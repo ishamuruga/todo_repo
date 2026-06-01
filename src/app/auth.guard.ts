@@ -15,3 +15,4 @@ export const loginGuard: CanActivateFn = () => {
 
   return authService.isAuthenticated() ? router.createUrlTree(['/home']) : true;
 };
+  
