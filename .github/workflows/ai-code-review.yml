@@ -1,0 +1,31 @@
+name: AI Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install openai
+
+      - name: Get PR diff
+        run: |
+          git fetch origin main
+          git diff origin/main > diff.txt
+
+      - name: Run AI Review
+        run: python ai_review.py
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }} 
