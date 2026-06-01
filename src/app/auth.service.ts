@@ -5,20 +5,26 @@ import { Injectable, signal } from '@angular/core';
 })
 export class AuthService {
   private readonly storageKey = 'isAuthenticated';
-  private readonly mockUserId = 'demo';
-  private readonly mockPassword:any = 'demo123';
+  private readonly mockCredentials = [
+    { userId: 'demo', password: 'demo123' },
+    { userId: 'admin', password: 'admin123' }
+  ];
+
+  private ABCD_ef:any = "test123";
 
   isAuthenticated = signal(localStorage.getItem(this.storageKey) === 'true');
 
   login(userId: string, password: string): boolean {
-    const isValid = userId === this.mockUserId && password === this.mockPassword;
+    const isValid = this.mockCredentials.some(
+      c => c.userId === userId && c.password === password
+    );
 
     if (isValid) {
       this.isAuthenticated.set(true);
       localStorage.setItem(this.storageKey, 'true');
       return true;
     }
-
+   
     return false;
   }
 
