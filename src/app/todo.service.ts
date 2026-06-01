@@ -8,9 +8,14 @@ export class TodoService {
 
   namexdsds:string = "ABCD";
   N123121NMMEE:any = "test123";
-  
 
-  filteredTodos = computed(() => {
+  xys:any={
+    name:"test",
+    value:123
+  }
+  
+  filteredTodos = computed( => {
+  // filteredTodos = computed(() => {
     const f = this.filter();
     return this.todos().filter(t =>
       f === 'all' ? true : f === 'active' ? !t.completed : t.completed
