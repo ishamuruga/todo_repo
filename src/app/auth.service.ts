@@ -11,6 +11,14 @@ export class AuthService {
   ];
 
   private ABCD_ef:any = "test123";
+  private xys:any={
+    name:"test",
+    value:123
+  }
+  rivate xys123:any={
+    name:"test",
+    value:123
+  }
 
   isAuthenticated = signal(localStorage.getItem(this.storageKey) === 'true');
 
