@@ -19,13 +19,15 @@ export class HomeComponent {
   router = inject(Router);
 
   newTodoText = '';
+  newTodoPriority = signal<'low' | 'medium' | 'high'>('medium');
   editingId = signal<number | null>(null);
   editText = signal('');
 
   addTodo() {
     if (this.newTodoText.trim()) {
-      this.todoService.add(this.newTodoText);
+      this.todoService.add(this.newTodoText, this.newTodoPriority());
       this.newTodoText = '';
+      this.newTodoPriority.set('medium');
     }
   }
 
