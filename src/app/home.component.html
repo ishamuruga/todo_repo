@@ -17,6 +17,12 @@
       <option value="medium">Medium</option>
       <option value="high">High</option>
     </select>
+    <input
+      class="date-input"
+      type="date"
+      [(ngModel)]="newTodoPlannedEndDate"
+      aria-label="Planned end date"
+    />
     <button class="add-btn" (click)="addTodo()">Add</button>
   </div>
 
@@ -49,7 +55,12 @@
             (change)="todoService.toggle(todo.id)"
           />
           <span class="priority-badge" [class]="'priority-' + todo.priority">{{ todo.priority }}</span>
-          <span class="todo-text" (dblclick)="startEdit(todo.id, todo.text)">{{ todo.text }}</span>
+          <div class="todo-details">
+            <span class="todo-text" (dblclick)="startEdit(todo.id, todo.text)">{{ todo.text }}</span>
+            @if (todo.plannedEndDate) {
+              <span class="planned-end-date">Planned end: {{ formatPlannedEndDate(todo.plannedEndDate) }}</span>
+            }
+          </div>
           <button class="delete-btn" (click)="todoService.remove(todo.id)">X</button>
         }
       </li>
