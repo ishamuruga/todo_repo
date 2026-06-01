@@ -12,6 +12,11 @@
       [(ngModel)]="newTodoText"
       (keyup.enter)="addTodo()"
     />
+    <select class="priority-select" [(ngModel)]="newTodoPriority">
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
     <button class="add-btn" (click)="addTodo()">Add</button>
   </div>
 
@@ -26,7 +31,7 @@
 
   <ul class="todo-list">
     @for (todo of todoService.filteredTodos(); track todo.id) {
-      <li class="todo-item" [class.completed]="todo.completed">
+      <li class="todo-item" [class.completed]="todo.completed" [class]="'priority-' + todo.priority">
         @if (editingId() === todo.id) {
           <input
             class="edit-input"
@@ -43,6 +48,7 @@
             [checked]="todo.completed"
             (change)="todoService.toggle(todo.id)"
           />
+          <span class="priority-badge" [class]="'priority-' + todo.priority">{{ todo.priority }}</span>
           <span class="todo-text" (dblclick)="startEdit(todo.id, todo.text)">{{ todo.text }}</span>
           <button class="delete-btn" (click)="todoService.remove(todo.id)">X</button>
         }
