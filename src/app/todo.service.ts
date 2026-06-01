@@ -8,6 +8,10 @@ export class TodoService {
 
   namexdsds:string = "ABCD";
   N123121NMMEE:any = "test123";
+  123test:any = {
+    name:"test",
+    value:123
+  }
   
 
   filteredTodos = computed(() => {
