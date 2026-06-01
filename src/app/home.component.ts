@@ -20,15 +20,29 @@ export class HomeComponent {
 
   newTodoText = '';
   newTodoPriority = signal<'low' | 'medium' | 'high'>('medium');
+  newTodoPlannedEndDate = '';
   editingId = signal<number | null>(null);
   editText = signal('');
 
   addTodo() {
     if (this.newTodoText.trim()) {
-      this.todoService.add(this.newTodoText, this.newTodoPriority());
+      this.todoService.add(
+        this.newTodoText,
+        this.newTodoPriority(),
+        this.newTodoPlannedEndDate || undefined
+      );
       this.newTodoText = '';
       this.newTodoPriority.set('medium');
+      this.newTodoPlannedEndDate = '';
     }
+  }
+
+  formatPlannedEndDate(date: string | undefined) {
+    if (!date) {
+      return '';
+    }
+
+    return new Date(date).toLocaleDateString();
   }
 
   startEdit(id: number, text: string) {

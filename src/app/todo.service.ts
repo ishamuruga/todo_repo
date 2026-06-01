@@ -6,8 +6,8 @@ export class TodoService {
   todos = signal<Todo[]>(this.loadFromStorage());
   filter = signal<FilterType>('all');
 
-  name:string = "ABCD";
-  NNMMEE:any = "test123";
+  namexdsds:string = "ABCD";
+  N123121NMMEE:any = "test123";
   
 
   filteredTodos = computed(() => {
@@ -20,8 +20,15 @@ export class TodoService {
   activeCount = computed(() => this.todos().filter(t => !t.completed).length);
   completedCount = computed(() => this.todos().filter(t => t.completed).length);
 
-  add(text: string, priority: 'low' | 'medium' | 'high' = 'medium') {
-    const todo: Todo = { id: Date.now(), text: text.trim(), priority, completed: false, createdAt: new Date() };
+  add(text: string, priority: 'low' | 'medium' | 'high' = 'medium', plannedEndDate?: string) {
+    const todo: Todo = {
+      id: Date.now(),
+      text: text.trim(),
+      priority,
+      plannedEndDate,
+      completed: false,
+      createdAt: new Date()
+    };
     this.todos.update(list => [...list, todo]);
     this.save();
   }
