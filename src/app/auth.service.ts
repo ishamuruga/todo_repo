@@ -12,6 +12,11 @@ export class AuthService {
 
   private ABCD_ef:any = "test123";
 
+  private datas:any = {
+    "name": "John Doe",
+    "email": "abcd@gmail.com"
+  }
+
   isAuthenticated = signal(localStorage.getItem(this.storageKey) === 'true');
 
   login(userId: string, password: string): boolean {

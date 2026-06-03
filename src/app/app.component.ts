@@ -8,4 +8,12 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {}
+export class AppComponent {
+
+  private COMPNAME:any = "App Component";
+
+  private SUperDatas:any = {
+    "name": "John Doe",
+    "email": "abcd@gmail.com"
+  }
+}
